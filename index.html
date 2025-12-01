@@ -1,18 +1,19 @@
 <!DOCTYPE html>
 <html>
-  <head>
+
+<head>
   <title>"Site11VP1Marens2025-2026"</title>
-<style>
-  body {
-  background-image: url("https://dfjc-files.sos-ch-gva-2.exo.io/s3fs-public/2021-10/Nyon.Marens.jpg")
-  background-size: cover;
-  background-position: center;   
-  background-repeat: no-repeat;
-  height: 100vh;                
-  margin: 0;
-    
+  <style>
+    body {
+      background-image: url("https://www.nyon.ch/media/image/0/large_3_2/nouveau-batiment-scolaire-nyon-marens-nyon-210317.jpg");
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      height: 100vh;
+      margin: 0;
+
       font-family: Arial, sans-serif;
-      background: #f5f5f5;
+      background-color: #f5f5f5;
       text-align: center;
       padding-top: 100px;
     }
@@ -20,7 +21,7 @@
     .btn {
       display: inline-block;
       padding: 15px 30px;
-      font-size: 20px;
+      font-size: 25px;
       border: none;
       border-radius: 8px;
       cursor: pointer;
@@ -32,6 +33,55 @@
     .btn:hover {
       background-color: #0056b3;
     }
+
+    .dropbtn {
+      background-color: #04AA6D;
+      color: white;
+      padding: 16px;
+      font-size: 16px;
+      border: none;
+    }
+
+    /* The container <div> - needed to position the dropdown content */
+    .dropdown {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      display: inline-block;
+      z-index: 999;
+    }
+
+    /* Dropdown Content (Hidden by Default) */
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      background-color: #f1f1f1;
+      min-width: 160px;
+      box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+      z-index: 1;
+    }
+
+    /* Links inside the dropdown */
+    .dropdown-content a {
+      color: black;
+      padding: 12px 16px;
+      text-decoration: none;
+      display: block;
+    }
+
+    /* Change color of dropdown links on hover */
+    .dropdown-content a:hover {
+      background-color: #ddd;
+    }
+
+    /* Show the dropdown menu on hover */
+    .dropdown:hover .dropdown-content {
+      display: block;
+    }
+
+    .dropdown:hover .dropbtn {
+      background-color: #3e8e41;
+    }
   </style>
 </head>
 
@@ -39,6 +89,16 @@
   <h1>Bienvenue à notre page d'accueil</h1>
 
   <a class="btn" href="https://voyageetudelocarno.vercel.app" target="_blank">Notre autre site</a>
-  <head>
-    
-<html>
+
+  <div class="dropdown">
+    <button class="dropbtn">Nos autres sites web</button>
+    <div class="dropdown-content">
+      <a href="https://gomaths.edu-vd.ch/">maths</a>
+      <a href="https://www.w3schools.com/howto/howto_css_dropdown.asp">guide dropdownachoum</a>
+      <a href="https://vite.dev/guide/">vite</a>
+    </div>
+  </div>
+
+</body>
+
+</html>

@@ -1,131 +1,118 @@
 <!DOCTYPE html>
-<html>
-
+<html lang="fr">
 <head>
-  <title>"Site11VP1Marens2025-2026"</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+
+  <title>Classe Marens 2025–2026</title>
+
   <style>
     body {
-      background-image: url("https://www.nyon.ch/media/image/0/large_3_2/nouveau-batiment-scolaire-nyon-marens-nyon-210317.jpg");
-      background-size: cover;
-      background-position: center;
-      background-repeat: no-repeat;
-      height: 100vh;
       margin: 0;
-
-
-
-    .font-family: Arial, sans-serif;
-      background-color: #f5f5f5;
-      text-align: center;
-      padding-top: 100px;
+      font-family: 'Inter', sans-serif;
+      background: #f4f4f4;
     }
 
-    .topbar {
-      position: absolute;
+    /* NAVBAR */
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 35px;
+      background: white;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      position: sticky;
       top: 0;
-      left: 0;
-      width: 100%;
-
-      display: flex; 
-      justify-content: space-between; 
-       align-items: center; 
-  
-      padding: 15px 25px;   
-  
-      background: rgba(0, 0, 0, 0.35); 
-      backdrop-filter: blur(6px);      
-      z-index: 10;      
-    }
-    .btn {
-      display: inline-block;
-      padding: 15px 30px;
-      font-size: 25px;
-      border: none;
-      border-radius: 8px;
-      cursor: pointer;
-      text-decoration: none;
-      background-color: #007bff;
-      color: white;
+      z-index: 1000;
     }
 
-    .btn:hover {
-      background-color: #0056b3;
-    }
-
-    .dropbtn {
-      background-color: #04AA6D;
-      color: white;
-      padding: 16px;
-      font-size: 16px;
-      border: none;
-    }
-
-    /* The container <div> - needed to position the dropdown content */
-    .dropdown {
-      position: absolute;
-      top: 20px;
-      left: 20px;
-      display: inline-block;
-      z-index: 999;
-    }
-
-    /* Dropdown Content (Hidden by Default) */
-    .dropdown-content {
-      display: none;
-      position: absolute;
-      background-color: #f1f1f1;
-      min-width: 160px;
-      box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-      z-index: 1;
-    }
-
-    /* Links inside the dropdown */
-    .dropdown-content a {
+    .nav-title {
+      font-size: 22px;
+      font-weight: 600;
       color: black;
-      padding: 12px 16px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 20px;
+      align-items: center;
+    }
+
+    .nav-links a {
       text-decoration: none;
-      display: block;
+      color: black;
+      font-weight: 500;
+      transition: 0.2s;
     }
 
-    /* Change color of dropdown links on hover */
-    .dropdown-content a:hover {
-      background-color: #ddd;
+    .nav-links a:hover {
+      opacity: 0.6;
     }
 
-    /* Show the dropdown menu on hover */
-    .dropdown:hover .dropdown-content {
-      display: block;
+    /* GREEN BUTTON IN NAVBAR */
+    .green-btn {
+      background: #4CAF50;
+      padding: 8px 15px;
+      border-radius: 6px;
+      color: white !important;
+      font-weight: 600;
+      text-decoration: none;
+      transition: 0.25s;
     }
 
-    .dropdown:hover .dropbtn {
-      background-color: #3e8e41;
+    .green-btn:hover {
+      background: #3e9642;
+    }
+
+    /* HERO SECTION */
+    .hero {
+      padding: 80px 30px;
+      text-align: center;
+      background: white;
+      margin-top: 25px;
+      border-radius: 12px;
+      width: 85%;
+      max-width: 900px;
+      margin-left: auto;
+      margin-right: auto;
+      box-shadow: 0 2px 15px rgba(0,0,0,0.08);
+    }
+
+    .hero h1 {
+      font-size: 32px;
+      margin-bottom: 10px;
+    }
+
+    .hero p {
+      font-size: 18px;
+      color: #444;
     }
   </style>
 </head>
 
 <body>
-  <nav class="topbar">
-  <div class="left">
-    <span class="logo">Notre Classe</span>
-  </div>
 
-  <div class="right">
-    <a href="#" class="green-button">Nos autres sites web</a>
-  </div>
-</nav>
-  <h1>Bienvenue à notre page d'accueil</h1>
-  
+  <!-- NAVBAR -->
+  <nav class="navbar">
+    <div class="nav-title">Classe de Marens 2025–2026</div>
 
-  <a class="btn" href="https://voyageetudelocarno.vercel.app" target="_blank">Notre autre site</a>
-  <div class="dropdown">
-    <button class="dropbtn">Nos autres sites web</button>
-    <div class="dropdown-content">
-      <a href="https://gomaths.edu-vd.ch/">maths</a>
-      <a href="https://www.w3schools.com/howto/howto_css_dropdown.asp">guide dropdownachoum</a>
-      <a href="https://vite.dev/guide/">vite</a>
+    <div class="nav-links">
+      <a href="#">Accueil</a>
+      <a href="#">Activités</a>
+      <a href="#">Photos</a>
+      <a href="#">Équipe</a>
+      <a href="#" class="green-btn">Nos autres sites web</a>
     </div>
-  </div>
+  </nav>
+
+  <!-- HERO SECTION -->
+  <section class="hero">
+    <h1>Bienvenue sur la page de notre classe !</h1>
+    <p>Nous sommes la classe de Marens pour l’année 2025–2026. Explorez nos projets, activités et photos.</p>
+  </section>
 
 </body>
-
 </html>

@@ -12,8 +12,15 @@
   <link rel="icon" href="swiss-army-knife.svg" type="image/svg+xml" />
 
   <style>
+    /* site-wide centered wrapper so hero and columns share exact same width */
+    .site-wrap {
+      width: min(85%, 900px);
+      margin: 25px auto; /* vertical spacing + horizontal centering */
+      box-sizing: content-box; /* match index behavior */
+    }
+
     body {
-      background-image: url("https://www.nyon.ch/media/image/0/large_3_2/nouveau-batiment-scolaire-nyon-marens-nyon-210317.jpg");
+      background: url("https://images.winalist.com/blog/wp-content/uploads/2025/06/01085924/adobestock-1276992871-1536x742.jpeg") no-repeat center center fixed;
       background-size: cover;
       background-position: center;
       background-repeat: no-repeat;
@@ -78,13 +85,11 @@
       padding: 80px 30px;
       text-align: center;
       background: rgba(255, 255, 255, 0.901);
-      margin-top: 25px;
+      margin: 0; /* spacing handled by .site-wrap */
       border-radius: 12px;
-      width: 85%;
-      max-width: 900px;
-      margin-left: auto;
-      margin-right: auto;
+      width: 100%; /* fill the .site-wrap exactly */
       box-shadow: 0 2px 15px rgba(0, 0, 0, 0.8);
+      box-sizing: content-box;
     }
 
     .hero h1 {
@@ -96,6 +101,23 @@
     .hero p {
       font-size: 18px;
       color: #000000;
+    }
+
+    .column {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;              /* vertical spacing between .section boxes */
+      margin-top: 20px;       /* space between hero and the column group */
+      width: 100%;            /* fill the .site-wrap exactly */
+    }
+
+    .section {
+      background: rgba(255, 255, 255, 0.901);
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      width: 100%;            /* fill the parent (.column) width */
+      box-sizing: border-box; /* ensure padding doesn't expand the width */
     }
   </style>
 </head>
@@ -114,11 +136,30 @@
     </div>
   </nav>
 
-  <!-- HERO SECTION -->
-  <section class="hero">
-    <h1>Bienvenue sur la page de notre classe !</h1>
-    <p>Nous sommes la 11VP1 pour l’année 2025–2026.</p>
-  </section>
+  <div class="site-wrap">
+    <!-- HERO SECTION -->
+    <section class="hero">
+      <h1>Voyage d'étude</h1>
+      <p>Nous irons à Locarno en mai 2026</p>
+    </section>
+    
+    <div class="column">
+      <div class="section">
+        <h2>Live prix échange USD/CHF</h2>
+        <div id="usdchf" class="data">chargement...</div>
+      </div>
+
+      <div class="section">
+        <h2>Live prix action MSFT</h2>
+        <div id="msft" class="data">chargement...</div>
+      </div>
+
+      <div class="section">
+        <h2>Live prix action GOOGL</h2>
+        <div id="googl" class="data">chargement...</div>
+      </div>
+    </div>
+  </div>
 
 </body>
 

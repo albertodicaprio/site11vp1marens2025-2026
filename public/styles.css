@@ -1,0 +1,104 @@
+ body {
+     background-image: url("https://www.nyon.ch/media/image/0/large_3_2/nouveau-batiment-scolaire-nyon-marens-nyon-210317.jpg");
+     background-size: cover;
+     background-position: center;
+     background-repeat: no-repeat;
+     height: 100vh;
+     margin: 0;
+     margin: 0;
+     font-family: 'Inter', sans-serif;
+ }
+
+ /* NAVBAR */
+ .navbar {
+     display: flex;
+     justify-content: space-between;
+     align-items: center;
+     padding: 15px 35px;
+     background: white;
+     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+     position: sticky;
+     top: 0;
+     z-index: 1000;
+ }
+
+ .nav-title {
+     font-size: 22px;
+     font-weight: 600;
+     color: black;
+ }
+
+ .nav-links {
+     display: flex;
+     gap: 20px;
+     align-items: center;
+ }
+
+ .nav-links a {
+     text-decoration: none;
+     color: black;
+     font-weight: 500;
+     transition: 0.2s;
+ }
+
+ .nav-links a:hover {
+     opacity: 0.6;
+ }
+
+ .blue-btn {
+     background: #2673b7;
+     padding: 8px 15px;
+     border-radius: 6px;
+     color: rgb(255, 255, 255) !important;
+     font-weight: 600;
+     text-decoration: none;
+     transition: 0.25s;
+ }
+
+ .blue-btn:hover {
+     background: #2071b7fd;
+ }
+
+ .hero {
+     padding: 80px 30px;
+     text-align: center;
+     background: rgba(255, 255, 255, 0.901);
+     margin: 25px auto 0;
+     border-radius: 12px;
+     width: min(85vw, 960px);
+     box-sizing: border-box;
+     box-shadow: 0 2px 15px rgba(0, 0, 0, 0.8);
+ }
+
+ .hero h1 {
+     font-size: 32px;
+     margin-bottom: 10px;
+     color: #000000;
+ }
+
+ .hero p {
+     font-size: 18px;
+     color: #000000;
+ }
+
+ .column {
+     display: flex;
+     flex-direction: column;
+     gap: 20px;
+     margin: 20px auto 0;
+     width: min(85vw, 960px);
+     box-sizing: border-box;
+ }
+
+ .section {
+     background: rgba(255, 255, 255, 0.901);
+     padding: 20px;
+     border-radius: 12px;
+     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+     width: 100%;
+
+     /* fill the parent (.column) width */
+     box-sizing: border-box;
+     /* ensure internal padding doesn't change outer size */
+     /* ensure padding doesn't expand the width */
+ }

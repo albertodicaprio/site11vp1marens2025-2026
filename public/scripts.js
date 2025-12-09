@@ -14,7 +14,7 @@ async function login() {
     const data = await res.json();
 
     if (data.success) {
-        window.location.href = "/secret.html";
+        window.location.href = "/private.html";
     } else {
         alert("Wrong password");
     }

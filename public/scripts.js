@@ -21,6 +21,6 @@ async function login() {
 }
 
 async function logout() {
-    await fetch("/api/logout");
+    await fetch("/api/logout", { cache: 'no-store' });
     location.href = "/index.html";
 }

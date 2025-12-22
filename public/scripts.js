@@ -2,6 +2,10 @@ fetch("/header.html").then(r => r.text()).then(t => {
     document.getElementById("header").innerHTML = t;
 });
 
+fetch("/api/logout_button").then(r => r.json()).then(t => {
+    document.getElementById("logout_button").innerHTML = t.html;
+});
+
 async function login() {
     const password = document.getElementById("password").value;
 

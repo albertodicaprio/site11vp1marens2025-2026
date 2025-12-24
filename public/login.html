@@ -19,7 +19,7 @@
 
     <section class="hero">
         <h1>Login</h1>
-        <input id="password" type="password" placeholder="Password">
+        <input id="password" type="password" placeholder="Password" onkeydown="if(event.key === 'Enter') login()">
         <button onclick="login()">Login</button>
     </section>
 

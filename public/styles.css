@@ -1,37 +1,49 @@
- body {
-     background-image: url("https://www.nyon.ch/media/image/0/large_3_2/nouveau-batiment-scolaire-nyon-marens-nyon-210317.jpg");
-     background-size: cover;
-     background-position: center;
-     background-repeat: no-repeat;
-     height: 100vh;
-     margin: 0;
-     margin: 0;
-     font-family: 'Inter', sans-serif;
- }
+/* Global box-sizing */
+html {
+    box-sizing: border-box;
+}
+*, *::before, *::after {
+    box-sizing: inherit;
+}
+
+body {
+    background-image: url("https://www.nyon.ch/media/image/0/large_3_2/nouveau-batiment-scolaire-nyon-marens-nyon-210317.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    min-height: 100vh;
+    margin: 0;
+    font-family: 'Inter', sans-serif;
+}
 
  /* NAVBAR */
  .navbar {
-     display: flex;
-     justify-content: space-between;
-     align-items: center;
-     padding: 15px 35px;
-     background: white;
-     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-     position: sticky;
-     top: 0;
-     z-index: 1000;
+    width: 100%;
+    box-sizing: border-box;
+    background: white;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px clamp(16px, 4vw, 35px); /* keeps a minimum gap at edges */
  }
 
  .nav-title {
-     font-size: 22px;
-     font-weight: 600;
-     color: black;
+    font-size: 22px;
+    font-weight: 600;
+    color: black;
  }
 
  .nav-links {
-     display: flex;
-     gap: 20px;
-     align-items: center;
+    margin-left: auto;            /* push the group to the right edge */
+    display: flex;
+    gap: 16px;
+    align-items: center;
+    flex-wrap: wrap;             /* allow wrapping */
+    justify-content: flex-end;   /* right-align each wrapped row */
  }
 
  .nav-links a {
@@ -60,12 +72,14 @@
  }
 
  .hero {
-     padding: 80px 30px;
+     display: block;
+     padding: 80px 24px;
      text-align: center;
      background: rgba(255, 255, 255, 0.901);
      margin: 25px auto 0;
      border-radius: 12px;
-     width: min(85vw, 960px);
+     max-width: 960px;
+     width: min(92vw, 960px);
      box-sizing: border-box;
      box-shadow: 0 2px 15px rgba(0, 0, 0, 0.8);
  }
@@ -102,3 +116,11 @@
      /* ensure internal padding doesn't change outer size */
      /* ensure padding doesn't expand the width */
  }
+
+/* Responsive tweaks */
+@media (max-width: 480px) {
+    .nav-title { font-size: 18px; }
+    .nav-links { gap: 8px; }
+    .blue-btn { padding: 6px 10px; }
+    .hero { padding: 40px 16px; width: calc(100% - 32px); }
+}

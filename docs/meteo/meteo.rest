@@ -1,0 +1,30 @@
+# Meteo API using REST Client VS Code Extension
+
+## Get an access token
+# @name login
+POST https://api.srgssr.ch/oauth/v1/accesstoken?grant_type=client_credentials
+Authorization: Basic {{$dotenv %consumer_key}}:{{$dotenv %consumer_secret}}
+Cache-Control: no-cache'
+Content-Length: 0
+Postman-Token: [token]
+
+@access_token = {{login.response.body.$.access_token}}
+
+############
+
+## Get the geolocation id for a city
+@city = Nyon
+
+# @name location
+GET https://api.srgssr.ch/srf-meteo/v2/geolocationNames?name={{city}}
+Authorization: Bearer {{access_token}}
+Cache-Control: no-cache
+
+@geolocation_id = {{location.response.body.$[0].geolocation.id}}
+
+############
+
+## Get the forecast for the geolocation id
+GET https://api.srgssr.ch/srf-meteo/v2/forecastpoint/{{geolocation_id}}
+Authorization: Bearer {{access_token}}
+Cache-Control: no-cache

@@ -53,6 +53,8 @@ function onPageLoad() {
     document.getElementById("holiday_days").innerText = "" + (holidays !== null ? holidays : "0");
     const exams = calculateDaysUntil(["2026-06-01"]);
     document.getElementById("exam_days").innerText = "" + (exams !== null ? exams : "0");
+    const study = calculateDaysUntil(["2026-05-04"]);
+    document.getElementById("study_days").innerText = "" + (study !== null ? study : "0");
 }
 
 // Ensure `onPageLoad` runs when the document is ready

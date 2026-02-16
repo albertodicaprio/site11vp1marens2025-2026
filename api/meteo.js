@@ -101,9 +101,11 @@ export default async function handler(req, res) {
         const cachedData = await cache.get(cacheKey);
 
         if (cachedData) {
+            console.log("Returning from cache");
             return res.status(200).json({ ...cachedData, cached: true });
         }
 
+        console.log("Fetching fresh meteo data");
         // Fetch data from API
         const data = await fetchMeteoData("Nyon");
 

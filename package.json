@@ -1,0 +1,27 @@
+{
+  "name": "site11vp1marens2025-2026",
+  "version": "1.0.0",
+  "description": "nothin'more",
+  "main": "middleware.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/albertodicaprio/site11vp1marens2025-2026.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/albertodicaprio/site11vp1marens2025-2026/issues"
+  },
+  "homepage": "https://github.com/albertodicaprio/site11vp1marens2025-2026#readme",
+  "dependencies": {
+    "@vercel/functions": "^3.4.2"
+  }
+}

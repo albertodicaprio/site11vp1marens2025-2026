@@ -1,4 +1,33 @@
-import { getCache } from "@vercel/functions";
+import fs from "fs/promises";
+
+async function readCache(cacheKey) {
+    try {
+        const cache_path = "/tmp/" + cacheKey + "-cache.json";
+        const cache_ttl = 3600 * 1000; // 1 hour
+        const raw = await fs.readFile(cache_path, "utf8");
+        const parsed = JSON.parse(raw);
+
+        if (Date.now() - parsed.timestamp > cache_ttl) {
+            console.log("Cache expired, returning null");
+            return null;
+        }
+        console.log("Cache hit, returning cached data");
+        return parsed.data;
+    } catch (error) {
+        console.log("Some error reading cache, returning null", error);
+        return null;
+    }
+}
+
+async function writeCache(cacheKey, data) {
+    const payload = {
+        timestamp: Date.now(),
+        data,
+    };
+
+    const cache_path = "/tmp/" + cacheKey + "-cache.json";
+    await fs.writeFile(cache_path, JSON.stringify(payload));
+}
 
 /**
  * Fetch meteo data from the API
@@ -85,8 +114,7 @@ async function fetchMeteoData(city) {
 }
 
 export default async function handler(req, res) {
-    // Set cache headers for Vercel
-    res.setHeader("Cache-Control", "public, s-maxage=3600, stale-while-revalidate=86400");
+    res.setHeader("Cache-Control", "no-store");
 
     if (req.method !== "GET") {
         return res.status(405).json({ error: "Method not allowed" });
@@ -95,11 +123,21 @@ export default async function handler(req, res) {
     try {
         // Create cache key
         const cacheKey = "meteo";
-        const cache = getCache();
 
-        // Check if data exists in cache
-        const cachedData = await cache.get(cacheKey);
+        console.log({
+            "vercel": process.env.VERCEL,
+            "vercel_env": process.env.VERCEL_ENV,
+            "node_env": process.env.NODE_ENV
+        });
+        const isDev = process.env.VERCEL !== "1";
+        console.log("isDev:", isDev);
 
+        if (isDev) {
+            cachedData = await readCache(cacheKey);
+        } else {
+            cache = await getCache();
+            cachedData = await cache.get(cacheKey);
+        }
         if (cachedData) {
             console.log("Returning from cache");
             return res.status(200).json({ ...cachedData, cached: true });
@@ -108,10 +146,11 @@ export default async function handler(req, res) {
         console.log("Fetching fresh meteo data");
         // Fetch data from API
         const data = await fetchMeteoData("Nyon");
-
-        // Store in cache with 1-hour TTL (3600 seconds)
-        await cache.set(cacheKey, data, { ttl: 3600 });
-
+        if (isDev) {
+            writeCache(cacheKey, data);
+        } else {
+            await cache.set(cacheKey, data, { ttl: 3600 });
+        }
         return res.status(200).json({ ...data, cached: false });
     } catch (error) {
         console.error("Meteo API error:", error);

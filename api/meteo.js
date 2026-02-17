@@ -134,10 +134,10 @@ export default async function handler(req, res) {
         console.log("isDev:", isDev);
 
         if (isDev) {
-            cachedData = await readCache(cacheKey);
+            const cachedData = await readCache(cacheKey);
         } else {
-            cache = await getCache();
-            cachedData = await cache.get(cacheKey);
+            const cache = await getCache();
+            const cachedData = await cache.get(cacheKey);
         }
         if (cachedData) {
             console.log("Returning from cache");

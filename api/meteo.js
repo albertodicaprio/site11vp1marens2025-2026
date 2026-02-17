@@ -124,6 +124,8 @@ export default async function handler(req, res) {
     try {
         // Create cache key
         const cacheKey = "meteo";
+        const cache = await getCache();
+        var cachedData = null;
 
         console.log({
             "vercel": process.env.VERCEL,
@@ -134,10 +136,9 @@ export default async function handler(req, res) {
         console.log("isDev:", isDev);
 
         if (isDev) {
-            const cachedData = await readCache(cacheKey);
+            cachedData = await readCache(cacheKey);
         } else {
-            const cache = await getCache();
-            const cachedData = await cache.get(cacheKey);
+            cachedData = await cache.get(cacheKey);
         }
         if (cachedData) {
             console.log("Returning from cache");

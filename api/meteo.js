@@ -1,4 +1,5 @@
 import fs from "fs/promises";
+import { getCache } from "@vercel/functions";
 
 async function readCache(cacheKey) {
     try {

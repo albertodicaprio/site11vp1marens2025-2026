@@ -24,6 +24,9 @@
     }
   </style>
   <script src="/scripts.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', onMeteoPageLoad);
+  </script>
 </head>
 
 <body>
@@ -34,12 +37,35 @@
     <p>... pour les prochaines heures et jours</p>
   </section>
 
-  <div class="column">
-    <div class="section">
-      <h2>+1h</h2>
-      <p>a voir</p>
+  <div class="columns-container">
+    <div class="column">
+      <div class="section">
+        <h2 id="meteo_h_0_time"></h2>
+        <p id="meteo_h_0_value"></p>
+      </div>
+      <div class="section">
+        <h2 id="meteo_h_1_time"></h2>
+        <p id="meteo_h_1_value"></p>
+      </div>
+      <div class="section">
+        <h2 id="meteo_h_2_time"></h2>
+        <p id="meteo_h_2_value"></p>
+      </div>
     </div>
-  </div>
+    <div class="column">
+      <div class="section">
+        <h2 id="meteo_d_1_date"></h2>
+        <p id="meteo_d_1_value"></p>
+      </div>
+      <div class="section">
+        <h2 id="meteo_d_2_date"></h2>
+        <p id="meteo_d_2_value"></p>
+      </div>
+      <div class="section">
+        <h2 id="meteo_d_3_date"></h2>
+        <p id="meteo_d_3_value"></p>
+      </div>
+    </div>
 </body>
 
 </html>

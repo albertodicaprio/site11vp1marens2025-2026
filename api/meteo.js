@@ -1,9 +1,10 @@
+import { tmpdir } from "os";
 import fs from "fs/promises";
 import { getCache } from "@vercel/functions";
 
 async function readCache(cacheKey) {
     try {
-        const cache_path = "/tmp/" + cacheKey + "-cache.json";
+        const cache_path = `${tmpdir()}/${cacheKey}-cache.json`;
         const cache_ttl = 3600 * 1000; // 1 hour
         const raw = await fs.readFile(cache_path, "utf8");
         const parsed = JSON.parse(raw);
@@ -26,7 +27,7 @@ async function writeCache(cacheKey, data) {
         data,
     };
 
-    const cache_path = "/tmp/" + cacheKey + "-cache.json";
+    const cache_path = `${tmpdir()}/${cacheKey}-cache.json`;
     await fs.writeFile(cache_path, JSON.stringify(payload));
 }
 

@@ -118,6 +118,9 @@ async function onMeteoPageLoad() {
     const temps = data.forecast.hours.map(entry =>
         entry.TTT_C
     );
+    const precips = data.forecast.hours.map(entry =>
+        entry.PROBPCP_PERCENT
+    );
 
     const ctx = document.getElementById("tempChart");
     Chart.defaults.color = "#000000";
@@ -151,9 +154,22 @@ async function onMeteoPageLoad() {
             datasets: [{
                 label: "Temperature (°C)",
                 data: temps,
+                type: "line",
                 tension: 0.3,
                 fill: true,
-                backgroundColor: "rgba(0, 150, 255, 0.2)"
+                backgroundColor: "rgba(255, 208, 0, 0.2)",
+                borderColor: "orange",
+                yAxisID: "y"
+            },
+            {
+                label: "Précipitations (%)",
+                data: precips,  // array of precipitation values matching labels
+                type: "line",
+                tension: 0.3,
+                fill: true,
+                backgroundColor: "rgba(0,150,255,0.2)",
+                borderColor: "blue",
+                yAxisID: "y1"
             }]
         },
         options: {
@@ -165,12 +181,18 @@ async function onMeteoPageLoad() {
                         text: "Hour"
                     }
                 },
-                y: {
-
-                    title: {
-                        display: true,
-                        text: "Temperature °C"
-                    }
+                y: {  // left axis for temperature
+                    type: "linear",
+                    position: "left",
+                    title: { display: true, text: "Temperature °C", color: "black" },
+                    ticks: { color: "black" },
+                },
+                y1: { // right axis for precipitation
+                    type: "linear",
+                    position: "right",
+                    title: { display: true, text: "Précipitations %", color: "black" },
+                    ticks: { color: "black" },
+                    grid: { drawOnChartArea: false } // prevent overlapping gridlines
                 }
             }
         },

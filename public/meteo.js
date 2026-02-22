@@ -84,6 +84,98 @@ async function onMeteoPageLoad() {
     const hourData3 = getHourMeteoDataByOffset(data.forecast.hours, 3);
     meteoH3time.innerText = extractHour(hourData3.date_time);
     meteoH3value.innerText = formatHourWeather(hourData3);
+
+    let lastDay = "";
+
+    const labels = data.forecast.hours.map(entry => {
+        const date = new Date(entry.date_time);
+        const day = date.toLocaleDateString("fr-CH", { weekday: "short" });
+        const hour = date.getHours().toString().padStart(2, "0") + ":00";
+
+        if (day !== lastDay) {
+            lastDay = day;
+            return day + "\n" + hour; // Line break!
+        }
+
+        return hour;
+    });
+
+    const now = new Date();
+
+    let closestIndex = 0;
+    let smallestDiff = Infinity;
+
+    data.forecast.hours.forEach((entry, index) => {
+        const forecastTime = new Date(entry.date_time);
+        const diff = Math.abs(forecastTime - now);
+
+        if (diff < smallestDiff) {
+            smallestDiff = diff;
+            closestIndex = index;
+        }
+    });
+
+    const temps = data.forecast.hours.map(entry =>
+        entry.TTT_C
+    );
+
+    const ctx = document.getElementById("tempChart");
+    Chart.defaults.color = "#000000";
+
+    const currentTimeLine = {
+        id: "currentTimeLine",
+        afterDatasetsDraw(chart) {
+
+            const { ctx, chartArea, scales } = chart;
+            const xScale = scales.x;
+
+            const xPos = xScale.getPixelForTick(closestIndex);
+
+            ctx.save();
+            ctx.strokeStyle = "red";
+            ctx.lineWidth = 2;
+
+            ctx.beginPath();
+            ctx.moveTo(xPos, chartArea.top);
+            ctx.lineTo(xPos, chartArea.bottom);
+            ctx.stroke();
+
+            ctx.restore();
+        }
+    };
+
+    new Chart(ctx, {
+        type: "line",
+        data: {
+            labels: labels,
+            datasets: [{
+                label: "Temperature (°C)",
+                data: temps,
+                tension: 0.3,
+                fill: true,
+                backgroundColor: "rgba(0, 150, 255, 0.2)"
+            }]
+        },
+        options: {
+            scales: {
+                x: {
+                    type: "category",
+                    title: {
+                        display: true,
+                        text: "Hour"
+                    }
+                },
+                y: {
+
+                    title: {
+                        display: true,
+                        text: "Temperature °C"
+                    }
+                }
+            }
+        },
+        plugins: [currentTimeLine]
+    });
 }
 
 document.addEventListener('DOMContentLoaded', onMeteoPageLoad);

@@ -4,19 +4,12 @@ async function onMeteoPageLoad() {
     const res = await fetch("/api/meteo");
     const data = await res.json();
 
-    let lastDay = "";
-
     const labels = data.forecast.hours.map(entry => {
         const date = new Date(entry.date_time);
         const day = date.toLocaleDateString("fr-CH", { weekday: "short" });
         const hour = date.getHours().toString().padStart(2, "0") + ":00";
 
-        if (day !== lastDay) {
-            lastDay = day;
-            return day + "\n" + hour; // Line break!
-        }
-
-        return hour;
+        return day + "\n" + hour; // Line break!
     });
 
     const now = new Date();

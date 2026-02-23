@@ -125,28 +125,6 @@ async function onMeteoPageLoad() {
     const ctx = document.getElementById("tempChart");
     Chart.defaults.color = "#000000";
 
-    const currentTimeLine = {
-        id: "currentTimeLine",
-        afterDatasetsDraw(chart) {
-
-            const { ctx, chartArea, scales } = chart;
-            const xScale = scales.x;
-
-            const xPos = xScale.getPixelForTick(closestIndex);
-
-            ctx.save();
-            ctx.strokeStyle = "red";
-            ctx.lineWidth = 2;
-
-            ctx.beginPath();
-            ctx.moveTo(xPos, chartArea.top);
-            ctx.lineTo(xPos, chartArea.bottom);
-            ctx.stroke();
-
-            ctx.restore();
-        }
-    };
-
     new Chart(ctx, {
         type: "line",
         data: {
@@ -159,6 +137,15 @@ async function onMeteoPageLoad() {
                 fill: true,
                 backgroundColor: "rgba(255, 208, 0, 0.2)",
                 borderColor: "orange",
+                pointRadius: temps.map((_, i) =>
+                    i === closestIndex ? 5 : 2
+                ),
+                pointBackgroundColor: temps.map((_, i) =>
+                    i === closestIndex ? "red" : "rgba(255, 208, 0, 0.2)"
+                ),
+                pointBorderColor: temps.map((_, i) =>
+                    i === closestIndex ? "black" : "orange"
+                ),
                 yAxisID: "y"
             },
             {
@@ -169,6 +156,15 @@ async function onMeteoPageLoad() {
                 fill: true,
                 backgroundColor: "rgba(0,150,255,0.2)",
                 borderColor: "blue",
+                pointRadius: temps.map((_, i) =>
+                    i === closestIndex ? 5 : 2
+                ),
+                pointBackgroundColor: temps.map((_, i) =>
+                    i === closestIndex ? "red" : "rgba(0,150,255,0.2)"
+                ),
+                pointBorderColor: temps.map((_, i) =>
+                    i === closestIndex ? "black" : "blue"
+                ),
                 yAxisID: "y1"
             }]
         },
@@ -195,8 +191,7 @@ async function onMeteoPageLoad() {
                     grid: { drawOnChartArea: false } // prevent overlapping gridlines
                 }
             }
-        },
-        plugins: [currentTimeLine]
+        }
     });
 }
 

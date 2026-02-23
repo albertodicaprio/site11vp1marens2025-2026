@@ -88,6 +88,8 @@ async function onMeteoPageLoad() {
             }]
         },
         options: {
+            responsive: true,
+            maintainAspectRatio: false,
             scales: {
                 x: {
                     type: "category",

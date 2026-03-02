@@ -1,6 +1,25 @@
 fetch("/header.html").then(r => r.text()).then(t => {
     document.getElementById("header").innerHTML = t;
+    setupBurgerMenu();
 });
+
+function setupBurgerMenu() {
+    const hamburger = document.getElementById("hamburger");
+    const navLinks = document.getElementById("nav-links");
+
+    hamburger.addEventListener("click", () => {
+        hamburger.classList.toggle("active");
+        navLinks.classList.toggle("active");
+    });
+
+    // Close menu when a link is clicked
+    navLinks.querySelectorAll("a").forEach(link => {
+        link.addEventListener("click", () => {
+            hamburger.classList.remove("active");
+            navLinks.classList.remove("active");
+        });
+    });
+}
 
 fetch("/api/logout_button").then(r => r.json()).then(t => {
     document.getElementById("logout_button").innerHTML = t.html;
